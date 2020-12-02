@@ -1,0 +1,12 @@
+import com.demounimed.demonstracao.Beneficiario;
+import com.demounimed.demonstracao.Devolutiva;
+
+rule "DRLCalculoIdade"
+	dialect "mvel"
+	when
+		Beneficiario( idade < 18 )
+	then
+		Devolutiva fact0 = new Devolutiva();
+		fact0.setMensagem( "Cliente DRL menor que 18" );
+		insert( fact0 );
+end

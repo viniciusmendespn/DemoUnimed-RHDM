@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://github.com/kiegroup/drools/kie-dmn/_8F7B061F-1D29-47F8-BF59-40F1DA556469" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_3AA8D7DE-2A58-48CC-8223-CEF69533D445" name="fluxo-regras" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://github.com/kiegroup/drools/kie-dmn/_8F7B061F-1D29-47F8-BF59-40F1DA556469">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_0510ABC2-C426-4B8A-851C-E73F7D74F570" name="sexo" isCollection="false">
+    <dmn:typeRef>string</dmn:typeRef>
+    <dmn:allowedValues kie:constraintType="enumeration" id="_7B32A0C1-0A05-4104-B5A4-CE3A5FD3F429">
+      <dmn:text>"MASCULINO", "FEMININO"</dmn:text>
+    </dmn:allowedValues>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_E95504DA-423D-4655-B920-7CCD3FCDE49A" name="idade">
+    <dmn:variable id="_22367B05-FB6C-4244-9666-7924455A74E1" name="idade" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:inputData id="_3A37F475-3EDB-494D-881A-1054CEDB888A" name="sexo">
+    <dmn:variable id="_35776555-AA08-4BD8-A2D1-5107C54B518F" name="sexo" typeRef="string"/>
+  </dmn:inputData>
+  <dmn:decision id="_EE2B03B8-6ACE-4DEE-A6BD-16EEEE22A2F3" name="Elegibilidade">
+    <dmn:variable id="_C19D2A9F-CA8E-4330-9140-B521DEE126B5" name="Elegibilidade" typeRef="string"/>
+    <dmn:informationRequirement id="_7ED179E9-317A-47BE-BC2B-3D6B7AE6514B">
+      <dmn:requiredInput href="#_E95504DA-423D-4655-B920-7CCD3FCDE49A"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_E7F79707-CE8F-4DFF-9776-A556A2C03318">
+      <dmn:requiredInput href="#_3A37F475-3EDB-494D-881A-1054CEDB888A"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_3D5D4923-5C7E-41FE-AD4B-899DBF8D821F" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_15A73681-C67E-4B7D-9846-275198AC4DD0">
+        <dmn:inputExpression id="_48F85CE1-A214-4C82-97F7-B17FCCF0749A" typeRef="number">
+          <dmn:text>idade</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_8345A68D-C9FF-4E7B-A5EF-2F1738C3F2C8">
+        <dmn:inputExpression id="_C856CDAC-BDC0-4F38-A15A-C46DA2211515" typeRef="string">
+          <dmn:text>sexo</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_CB584465-CE3A-46AE-82F9-91B262E31BE0" typeRef="string"/>
+      <dmn:rule id="_B9F9AEF7-F83E-4509-BD32-0C43D7AC6EF8">
+        <dmn:inputEntry id="_886B32C0-092D-46FA-BDD5-9DDD8497AF93">
+          <dmn:text>[0..17]</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_C98D8F0B-A83A-486A-A17A-2AF0E52A80D2">
+          <dmn:text>"MASCULINO"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_FA02395A-34C4-4FFF-B4AC-B40DA76036C6">
+          <dmn:text>"NAo aceito, homem menor de idade"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_3B7B4CDA-74A8-4B83-B5DA-28C33EFBCC50">
+        <dmn:inputEntry id="_BD813C43-538F-4B83-BEDB-90D1152FDA23">
+          <dmn:text>&gt;17</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_5DB4B9B1-CAF8-4FCD-AFE9-0EDFE61CE9E5">
+          <dmn:text>"MASCULINO"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_C1C47C11-1904-4CC7-B9F6-74D303B1FFBB">
+          <dmn:text>"Aceito, homem elegIvel"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_33A133C2-4493-4229-879E-3CF733B8E180">
+        <dmn:inputEntry id="_111687EE-8602-49C4-953B-FD16D55F1B0B">
+          <dmn:text>[0..15]</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_2D8EF63C-87F6-443C-9089-02DA4EAF9CDD">
+          <dmn:text>"FEMININO"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_ABBB43A9-187F-4DAA-BE82-A83F86562A37">
+          <dmn:text>"NAo aceito, mulher menor de idade"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_70471752-472B-42A9-AC9D-21203A534070">
+        <dmn:inputEntry id="_9E9B7E78-4C46-4981-AC17-64CF0B3514DB">
+          <dmn:text>&gt;15</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_AB28B6DF-4A74-44A2-89CD-818A68F84939">
+          <dmn:text>"FEMININO"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_BE975833-3B37-4439-AEB4-463464C9EE48">
+          <dmn:text>"Aceito, mulher elegIvel"</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_3D5D4923-5C7E-41FE-AD4B-899DBF8D821F">
+            <kie:width>50.0</kie:width>
+            <kie:width>152.0</kie:width>
+            <kie:width>157.0</kie:width>
+            <kie:width>334.0</kie:width>
+            <kie:width>100.0</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-_E95504DA-423D-4655-B920-7CCD3FCDE49A" dmnElementRef="_E95504DA-423D-4655-B920-7CCD3FCDE49A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="243.59813084112147" y="321" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_3A37F475-3EDB-494D-881A-1054CEDB888A" dmnElementRef="_3A37F475-3EDB-494D-881A-1054CEDB888A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="485" y="321" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_EE2B03B8-6ACE-4DEE-A6BD-16EEEE22A2F3" dmnElementRef="_EE2B03B8-6ACE-4DEE-A6BD-16EEEE22A2F3" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="365" y="187" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_7ED179E9-317A-47BE-BC2B-3D6B7AE6514B" dmnElementRef="_7ED179E9-317A-47BE-BC2B-3D6B7AE6514B">
+        <di:waypoint x="343.5981308411215" y="346"/>
+        <di:waypoint x="365" y="212"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_E7F79707-CE8F-4DFF-9776-A556A2C03318" dmnElementRef="_E7F79707-CE8F-4DFF-9776-A556A2C03318">
+        <di:waypoint x="485" y="346"/>
+        <di:waypoint x="465" y="212"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
